@@ -6,12 +6,15 @@ body {
 a:hover {
   text-decoration: none;
 }
-#logo img {
+#site-head {
+  background: white;
+}
+#blog-logo img {
   max-width: 90%;
   -webkit-transition: -webkit-transform 0.05s ease-in-out;
   transition: transform 0.05s ease-in-out;
 }
-#logo img:hover {
+#blog-logo img:hover {
   -webkit-transform: rotate(-20deg);
   transform: rotate(-20deg);
 }
@@ -21,14 +24,43 @@ a:hover {
   background: #fff;
   overflow: hidden;
 }
-#logo {
+#blog-logo {
   display: block;
   text-align: center;
-  padding: 4em 0;
+  padding: 4em 0 2em;
 }
 #ft {
   margin: 4em 0 2em;
   text-align: center;
+}
+
+/* Posts */
+
+.posts > article {
+  width: 50%;
+  margin-bottom: 1em;
+  float: left;
+  vertical-align: top;
+  padding-right: 0.5em;
+}
+
+.posts > article:nth-child(even) {
+  padding-right: 0;
+  padding-left: 0.5em;
+}
+
+.posts > article .post-meta {
+  float: right;
+  color: gray;
+}
+
+.posts article img {
+  width: 100%;
+  height: auto;
+}
+
+.posts article p {
+  margin: 0.5em 0;
 }
 
 /* Small devices (tablets, 768px and up) */

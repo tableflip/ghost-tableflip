@@ -5,19 +5,16 @@
 
 {{! The big featured header on the homepage, with the site logo and description }}
 <header id="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
-    <div class="vertical">
-        <div id="site-head-content" class="inner">
+  <div class="vertical">
+    <div id="site-head-content" class="inner">
 
-            {{#if @blog.logo}}<a id="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" longdesc="{{@blog.description}}" /></a>{{/if}}
-        </div>
+      {{#if @blog.logo}}<a id="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" longdesc="{{@blog.description}}" /></a>{{/if}}
     </div>
+  </div>
 </header>
 
 <div id="main">
   <div class="row">
-    <header class="col-md-12">
-        {{#if @blog.logo}}<a id="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>{{/if}}
-    </header>
     <div class="col-md-6">
       
       <h1 id="test-ideas">Test the ideas</h1>
@@ -70,8 +67,34 @@
 
     </div><!--/.col-md-6-->
   </div><!--/.row-->
-  <footer id="ft" class="row">
-	{{! Ghost outputs important scripts and data with this tag }}
+  {{! The main content area on the homepage }}
+  <h2>What we've been up to</h2>
+  <div class="posts">
+
+  {{! Each post will be output using this markup }}
+  {{#foreach posts}}
+
+  <article class="{{post_class}}">
+    <header class="post-header">
+    <span class="post-meta"><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD/MM/YY"}}</time> {{#if tags}}on {{tags}}{{/if}}</span>
+    <h2 class="post-title">{{{title}}}</h2>
+
+    </header>
+    <section class="post-excerpt">
+      <p>{{content}}&hellip;</p>
+    </section>
+  </article>
+
+  {{/foreach}}
+
+  {{!! After all the posts, we have the previous/next pagination links }}
+  {{pagination}}
+
+  </div>
+</div><!--/#main-->
+
+<footer id="ft" class="row">
+  {{! Ghost outputs important scripts and data with this tag }}
     {{ghost_foot}}
     <ul class="list-inline">
       <li><a href="http://twitter.com/olizilla"><i class="icon icon-twitter"></i></a></li>
@@ -80,29 +103,3 @@
     </ul>
     <small>Copyright &copy; tableflip ltd<br/>#8675539</small>
   </footer>
-</div><!--/#main-->
-
-
-{{! The main content area on the homepage }}
-<div class="posts">
-
-    {{! Each post will be output using this markup }}
-    {{#foreach posts}}
-
-    <article class="{{post_class}}">
-        <header class="post-header">
-            <span class="post-meta"><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time> {{#if tags}}on {{tags}}{{/if}}</span>
-            <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
-
-        </header>
-        <section class="post-excerpt">
-            <p>{{excerpt}}&hellip;</p>
-        </section>
-    </article>
-
-    {{/foreach}}
-
-    {{!! After all the posts, we have the previous/next pagination links }}
-    {{pagination}}
-
-</div>
