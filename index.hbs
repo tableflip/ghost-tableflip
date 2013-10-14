@@ -1,0 +1,108 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! The big featured header on the homepage, with the site logo and description }}
+<header id="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+    <div class="vertical">
+        <div id="site-head-content" class="inner">
+
+            {{#if @blog.logo}}<a id="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" longdesc="{{@blog.description}}" /></a>{{/if}}
+        </div>
+    </div>
+</header>
+
+<div id="main">
+  <div class="row">
+    <header class="col-md-12">
+        {{#if @blog.logo}}<a id="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>{{/if}}
+    </header>
+    <div class="col-md-6">
+      
+      <h1 id="test-ideas">Test the ideas</h1>
+      <p class="lead">Ideas are king, but not all of them are royalty material.</p>
+      <p>Still, it's important to find out. You really don't know what kind of idea you've got until it's been tested. Tableflip encourages a creative working relationship where all the things are tried out to see what works best.</p>
+      <blockquote>
+        <p>The only way of discovering the limits of the possible is to venture a little way past them into the impossible.</p>
+        <small>Arthur C. Clarke, "<cite>Profiles of The Future</cite>", 1961</small>
+      </blockquote>
+      <p>Stuff that doesn't work gets pruned and you're left with an awesome simple thing that does something new and interesting.</p>
+      <p>What if you could ship a thing after a week? How about <em>every</em> week? Well, this is what tableflip does...and then you can change direction of the project, reprioritise, or continue with the plan.</p>
+      
+      <h1>Who <em>are</em> you?</h1>
+      <p>Good question.</p>
+      <ul class="list-inline">
+        <li><a href="https://github.com/alanshaw"><img class="img-circle" src="https://en.gravatar.com/avatar/8ca838dbb449a1359b5a4eadd26abb42" /></a></li>
+        <li><a href="https://github.com/olizilla"><img class="img-circle" src="https://en.gravatar.com/avatar/1114a99d8da01f890f39c02bd2b1bfc3" /></a></li>
+      </ul>
+      <p>Alan and Oli. Two freelancers, not unlike Sharky &amp; George, who worked on various web development projects together for some 6 years before joining forces to take over the world. Between them they have some 20 or so years of experience in development and hacking on the web.</p>
+      
+    </div><!--/.col-md-6-->
+    <div class="col-md-6">
+      
+      <h1 id="ship-simple">Ship the simple</h1>
+      <p class="lead">Tableflip builds great simple things that do their job really well.</p>
+      <p>Tableflip was born from outrage of complicated things that do their job badly.</p>
+      <p>If a chunk of work is going to take longer than a week to build, then it's probably way too complicated. Complicated things are more likely to break, harder to maintain, not as fast to run and more than likely slower to download.</p>
+      <p>That's why tableflip aims to give you something every week. Simple things are better, and simple things can be built in a week.</p>
+      
+      <div id="hire-us">
+        <h1>Hire us</h1>
+        <p>Tableflip can build you an awesome thing. You should probably hire us now.</p>
+        <form action="sendmail.php" method="POST" role="form">
+          <div class="form-group">
+            <label for="hire-email">Email address</label>
+            <input type="email" class="form-control" id="hire-email" placeholder="Enter email" name="email">
+          </div>
+          <div class="form-group">
+            <label for="hire-msg">Message</label>
+            <textarea id="hire-msg" class="form-control" rows="3" placeholder="Enter message" name="msg"></textarea>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div><!--#hire-us-->
+      
+      <div id="sent">
+        <h1>Thanks</h1>
+        <p>Message sent. We'll get in touch as soon as we can!</p>
+      </div>
+
+    </div><!--/.col-md-6-->
+  </div><!--/.row-->
+  <footer id="ft" class="row">
+	{{! Ghost outputs important scripts and data with this tag }}
+    {{ghost_foot}}
+    <ul class="list-inline">
+      <li><a href="http://twitter.com/olizilla"><i class="icon icon-twitter"></i></a></li>
+      <li><a href="https://github.com/tableflip"><i class="icon icon-github"></i></a></li>
+      <li><a href="http://twitter.com/_alanshaw"><i class="icon icon-twitter"></i></a></li>
+    </ul>
+    <small>Copyright &copy; tableflip ltd<br/>#8675539</small>
+  </footer>
+</div><!--/#main-->
+
+
+{{! The main content area on the homepage }}
+<div class="posts">
+
+    {{! Each post will be output using this markup }}
+    {{#foreach posts}}
+
+    <article class="{{post_class}}">
+        <header class="post-header">
+            <span class="post-meta"><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time> {{#if tags}}on {{tags}}{{/if}}</span>
+            <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
+
+        </header>
+        <section class="post-excerpt">
+            <p>{{excerpt}}&hellip;</p>
+        </section>
+    </article>
+
+    {{/foreach}}
+
+    {{!! After all the posts, we have the previous/next pagination links }}
+    {{pagination}}
+
+</div>
